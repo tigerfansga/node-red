@@ -4,10 +4,14 @@ services:
   nodered:
     image: ghcr.io/tigerfansga/node-red:latest
     environment:
-        - TZ=America/New_York
+      - TZ=America/New_York
     ports: 
-        - "1880:1880"
+      - "1880:1880"
     volumes:
-        - node-red-data:/data
+      - node-red-data:/data
+    restart:
+      unless-stopped
+    labels:
+      - "com.centurylinklabs.watchtower.enable=false"
 volumes:
   node-red-data:
